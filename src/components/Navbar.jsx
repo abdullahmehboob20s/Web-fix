@@ -66,8 +66,8 @@ const Navbar = () => {
       {/* Mobile menu */}
       <ul
         ref={sidebarRef}
-        className={`fixed h-full top-0 right-0 w-[300px] shadow-[0_10px_10px_rgba(0,0,0,0.1)] bg-teal-dark flex md:hidden flex-col justify-center items-center z-[120] transition-all duration-[.4s] ${
-          nav ? "translate-x-[0px]" : "translate-x-[300px]"
+        className={`fixed h-full top-0 right-0 w-[18rem] shadow-[0_10px_10px_rgba(0,0,0,0.1)] bg-teal-dark flex md:hidden flex-col justify-center items-center z-[120] transition-all duration-[.4s] ${
+          nav ? "translate-x-[0px]" : "translate-x-[18rem]"
         } `}
       >
         <div
