@@ -8,13 +8,13 @@ function App() {
   return (
     <div>
       <Navbar />
-      <div className="mb-32">
+      <div>
         <Home />
       </div>
-      <div className="mb-52">
+      <div>
         <About />
       </div>
-      <div className="mb-32">
+      <div>
         <Work />
       </div>
       <Contact />

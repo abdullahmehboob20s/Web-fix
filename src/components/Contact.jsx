@@ -2,7 +2,11 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <div name="contact" className="w-full flex justify-center items-center p-4">
+    <div
+      name="contact"
+      // mt-[3rem] md:mt-0
+      className="w-full flex justify-center items-center p-4"
+    >
       <form
         method="POST"
         action="https://getform.io/f/9c81a620-e4cb-4561-9f2b-1ce313e2a40b"

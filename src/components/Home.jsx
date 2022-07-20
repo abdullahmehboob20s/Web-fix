@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div name="home" className="w-5/6 ml-10 h-screen">
       {/* Container */}
-      <div className="max-w-5xl mx-auto  px-8 flex flex-col justify-center h-full">
+      <div className="max-w-5xl mx-auto px-8 flex flex-col justify-center h-full">
         <p className=" text-gray-light">Hi, my name is</p>
         <h1 className="text-4xl sm:text-7xl font-bold text-orange">
           Leila Agger

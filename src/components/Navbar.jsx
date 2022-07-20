@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Logo from "../assets/logo.png";
+import { Link } from "react-scroll";
+import OutsideClickDetector from "../hooks/OutsideClickDetector";
+import useMediaQuery from "../hooks/useMediaQuery";
 import {
   FaBars,
   FaTimes,
@@ -6,19 +10,24 @@ import {
   FaTwitter,
   FaLinkedin,
 } from "react-icons/fa";
-// import { HiOutlineMail } from "react-icons/hi";
-// import { BsFillPersonLinesFill } from "react-icons/bs";
-import Logo from "../assets/logo.png";
-import { Link } from "react-scroll";
 
 const Navbar = () => {
+  const isAbove768px = useMediaQuery("(min-width : 48em)");
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
+  const sidebarRef = OutsideClickDetector(() => {
+    setNav(false);
+  });
+
+  useEffect(() => {
+    if (nav === true && isAbove768px === true) {
+      setNav(false);
+    }
+  }, [isAbove768px, nav]);
+
   return (
-    <div
-      className="fixed w-full flex justify-between items-center px-4  bg-teal-dark text-blue-bright
-    "
-    >
+    <div className="fixed w-full flex justify-between items-center px-4  bg-teal-dark text-blue-bright">
+      <div className={`black-screen ${nav ? "show" : ""}`}></div>
       <div>
         <img src={Logo} alt="Logo" style={{ width: "80px" }} />
       </div>
@@ -56,47 +65,55 @@ const Navbar = () => {
       </div>
       {/* Mobile menu */}
       <ul
-        className={
-          !nav
-            ? "hidden"
-            : "absolute top-[100%] shadow-[0_10px_10px_rgba(0,0,0,0.1)] border-t border-teal-medium border-b left-0 w-full bg-teal-dark flex flex-col justify-center items-center z-20"
-        }
+        ref={sidebarRef}
+        className={`fixed h-full top-0 right-0 w-[300px] shadow-[0_10px_10px_rgba(0,0,0,0.1)] bg-teal-dark flex md:hidden flex-col justify-center items-center z-[120] transition-all duration-[.4s] ${
+          nav ? "translate-x-[0px]" : "translate-x-[300px]"
+        } `}
       >
-        <li className="py-4 sm:py-6 text-2xl sm:text-4xl">
-          <Link onClick={handleClick} to="home" smooth={true} duration={500}>
-            Home
-          </Link>
-        </li>
-        <li className="py-4 sm:py-6 text-2xl sm:text-4xl">
-          {" "}
-          <Link
-            onClick={handleClick}
-            to="about"
-            offset={-200}
-            smooth={true}
-            duration={500}
-          >
-            About
-          </Link>
-        </li>
-        <li className="py-4 sm:py-6 text-2xl sm:text-4xl">
-          {" "}
-          <Link
-            onClick={handleClick}
-            to="work"
-            offset={-160}
-            smooth={true}
-            duration={500}
-          >
-            Featured Work
-          </Link>
-        </li>
-        <li className="py-4 sm:py-6 text-2xl sm:text-4xl">
-          {" "}
-          <Link onClick={handleClick} to="contact" smooth={true} duration={500}>
-            Contact
-          </Link>
-        </li>
+        <div
+          onClick={handleClick}
+          className="absolute top-[2rem] right-[2rem] cursor-pointer"
+        >
+          <FaTimes size={22} />
+        </div>
+        <Link
+          onClick={handleClick}
+          className="w-full text-center py-4 block text-2xl cursor-pointer"
+          to="home"
+          smooth={true}
+          duration={500}
+        >
+          Home
+        </Link>{" "}
+        <Link
+          onClick={handleClick}
+          className="w-full text-center py-4 block text-2xl cursor-pointer"
+          to="about"
+          offset={-200}
+          smooth={true}
+          duration={500}
+        >
+          About
+        </Link>{" "}
+        <Link
+          onClick={handleClick}
+          className="w-full text-center py-4 block text-2xl cursor-pointer"
+          to="work"
+          offset={-160}
+          smooth={true}
+          duration={500}
+        >
+          Featured Work
+        </Link>{" "}
+        <Link
+          onClick={handleClick}
+          className="w-full text-center py-4 block text-2xl cursor-pointer"
+          to="contact"
+          smooth={true}
+          duration={500}
+        >
+          Contact
+        </Link>
       </ul>
 
       {/* Social Icons*/}

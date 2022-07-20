@@ -29,4 +29,26 @@
       hsla(160, 40%, 30%, 0.8)
     ) !important;
   }
+
+  .section-height {
+    @apply min-h-[auto] md:min-h-[70vh] mb-[6rem] md:mb-0;
+  }
+
+  .black-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 100 !important;
+    transition: all 0.4s ease;
+    opacity: 0;
+    pointer-events: none;
+    @apply block md:hidden;
+  }
+  .black-screen.show {
+    opacity: 1;
+    pointer-events: visible;
+  }
 }
